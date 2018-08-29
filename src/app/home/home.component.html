@@ -1,7 +1,16 @@
 
 <div class="container">
-  <div>
-    <input type="search" class="search">
+  <div class="row">
+    <div class="col-12">
+      <input type="search" class="search" #searchBox [(ngModel)]="searchTerm" (keydown.enter)="search(searchBox.value)">
+    </div>
+    <div class="col-8 offset-2">
+      <ul>
+        <li><a href="{{recipe.href}}">{{ recipe.title }}</a></li>
+        <li>{{searchTerm}}</li>
+        <li *ngFor="let recipeItem of recipes"><a href="{{recipeItem.href}}">{{recipeItem.title}}</a></li>
+      </ul>
+    </div>
   </div>
 </div>
 
