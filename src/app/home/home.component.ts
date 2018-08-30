@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../models/recipe';
 import { RecipeService } from '../recipe.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-home',
@@ -10,26 +11,21 @@ import { RecipeService } from '../recipe.service';
 export class HomeComponent implements OnInit {
 
   constructor(
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private userService: UserService
   ) { }
-  myVar = 'ips'
-  recipe: Recipe;
+  //myVar = 'ips'
+  //recipe: Recipe;
 
-  recipes: Recipe[];
+  //recipes: Recipe[];
+  users: any[] = [];
+  searchTerm: string = '';
   
   ngOnInit() {
-    this.recipe = {
-      title: 'Pastel azteca!',
-      href: 'http://github.com',
-      ingredients: '',
-      thumbnail: ''
-    }
-
-    this.recipes = this.recipeService.getRecipes();
-
-    // this.recipeService.getAPIRecipes().subscribe(
-    //   (data) => { console.log(data); }
-    // );
+    this.userService.getUsers().subscribe((data) => {
+      console.log(data.data);
+      this.users = data.data;
+    })
   }
 
   search(value) {

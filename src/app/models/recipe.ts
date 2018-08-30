@@ -3,6 +3,4 @@ export class Recipe {
     public href: string;
     public ingredients: string;
     public thumbnail: string;
-
-    
 }
