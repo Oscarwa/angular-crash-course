@@ -21,9 +21,12 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     this.id = this.router.snapshot.paramMap.get('id');
 
-    this.userService.getUserById(this.id).subscribe((u) => {
-      this.user = u.data;
-    });
+    this.user = this.userService.currentUser;
+    if(!this.user) {
+      this.userService.getUserById(this.id).subscribe((u) => {
+        this.user = u.data;
+      });
+    }
   }
 
   goBack() {

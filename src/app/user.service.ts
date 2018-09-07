@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
+  public currentUser: User;
+
   constructor(
     private http: HttpClient
   ) { }
@@ -16,7 +18,7 @@ export class UserService {
     return this.http.get('https://reqres.in/api/users');
   }
 
-  getUserById(id) {
+  getUserById(id) : Observable<any> {
     return this.http.get('https://reqres.in/api/users/' + id);
   }
 }

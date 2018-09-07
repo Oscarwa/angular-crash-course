@@ -9,7 +9,7 @@
         <!-- <li *ngFor="let recipeItem of recipes"><a href="{{recipeItem.href}}">{{recipeItem.title}}</a></li> -->
         <li *ngFor="let userItem of users | userFilter: searchTerm">
             {{userItem.first_name}} 
-            <button [routerLink]="['/details', userItem.id]" class="btn">View</button>
+            <button (click)="view(userItem)" class="btn">View</button>
         </li>
       </ul>
     </div>
